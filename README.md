@@ -90,4 +90,4 @@ ai-translator/
 ---
 
 Made by Sparsh Shukla · GitHub: the-sparsh-shukla · Pinnacle Labs AI Internship 2026
-# ai_translator
+
