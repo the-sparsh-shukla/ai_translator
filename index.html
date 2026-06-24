@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Translator App</title>
+  <link rel="stylesheet" href="src/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">🌐 TranslateAI</div>
+    <div class="nav-right">
+      <a href="#about">About</a>
+      <a href="https://github.com/the-sparsh-shukla" target="_blank">GitHub</a>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <div class="hero">
+    <h1>Real-Time AI <span class="highlight">Translation</span></h1>
+    <p>Break language barriers instantly. Translate text between 50+ languages using Claude AI.</p>
+    <p class="hero-sub">Pinnacle Labs Internship 2026 — Project 2 🌍</p>
+  </div>
+
+  <!-- main translator -->
+  <div class="translator-container">
+
+    <!-- language bar -->
+    <div class="lang-bar">
+      <div class="lang-select-wrap">
+        <label for="fromLang">From</label>
+        <select id="fromLang">
+          <option value="auto">Auto Detect</option>
+          <option value="English">English</option>
+          <option value="Hindi">Hindi</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Arabic">Arabic</option>
+          <option value="Chinese">Chinese (Simplified)</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+          <option value="Portuguese">Portuguese</option>
+          <option value="Russian">Russian</option>
+          <option value="Italian">Italian</option>
+          <option value="Dutch">Dutch</option>
+          <option value="Turkish">Turkish</option>
+          <option value="Bengali">Bengali</option>
+          <option value="Urdu">Urdu</option>
+          <option value="Tamil">Tamil</option>
+          <option value="Telugu">Telugu</option>
+          <option value="Marathi">Marathi</option>
+          <option value="Gujarati">Gujarati</option>
+          <option value="Punjabi">Punjabi</option>
+          <option value="Kannada">Kannada</option>
+          <option value="Malayalam">Malayalam</option>
+          <option value="Odia">Odia</option>
+          <option value="Swedish">Swedish</option>
+          <option value="Norwegian">Norwegian</option>
+          <option value="Danish">Danish</option>
+          <option value="Finnish">Finnish</option>
+          <option value="Greek">Greek</option>
+          <option value="Polish">Polish</option>
+          <option value="Ukrainian">Ukrainian</option>
+          <option value="Hebrew">Hebrew</option>
+          <option value="Thai">Thai</option>
+          <option value="Vietnamese">Vietnamese</option>
+          <option value="Indonesian">Indonesian</option>
+          <option value="Malay">Malay</option>
+          <option value="Swahili">Swahili</option>
+        </select>
+      </div>
+
+      <button id="swapBtn" class="swap-btn" title="Swap languages">⇄</button>
+
+      <div class="lang-select-wrap">
+        <label for="toLang">To</label>
+        <select id="toLang">
+          <option value="Hindi">Hindi</option>
+          <option value="English" selected>English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Arabic">Arabic</option>
+          <option value="Chinese">Chinese (Simplified)</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+          <option value="Portuguese">Portuguese</option>
+          <option value="Russian">Russian</option>
+          <option value="Italian">Italian</option>
+          <option value="Dutch">Dutch</option>
+          <option value="Turkish">Turkish</option>
+          <option value="Bengali">Bengali</option>
+          <option value="Urdu">Urdu</option>
+          <option value="Tamil">Tamil</option>
+          <option value="Telugu">Telugu</option>
+          <option value="Marathi">Marathi</option>
+          <option value="Gujarati">Gujarati</option>
+          <option value="Punjabi">Punjabi</option>
+          <option value="Kannada">Kannada</option>
+          <option value="Malayalam">Malayalam</option>
+          <option value="Odia">Odia</option>
+          <option value="Swedish">Swedish</option>
+          <option value="Norwegian">Norwegian</option>
+          <option value="Danish">Danish</option>
+          <option value="Finnish">Finnish</option>
+          <option value="Greek">Greek</option>
+          <option value="Polish">Polish</option>
+          <option value="Ukrainian">Ukrainian</option>
+          <option value="Hebrew">Hebrew</option>
+          <option value="Thai">Thai</option>
+          <option value="Vietnamese">Vietnamese</option>
+          <option value="Indonesian">Indonesian</option>
+          <option value="Malay">Malay</option>
+          <option value="Swahili">Swahili</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- text panels -->
+    <div class="panels">
+
+      <!-- input panel -->
+      <div class="panel">
+        <div class="panel-top">
+          <span class="panel-label" id="fromLabel">Source Text</span>
+          <div class="panel-actions">
+            <button class="icon-btn" id="clearBtn" title="Clear text">✕</button>
+            <button class="icon-btn" id="pasteBtn" title="Paste from clipboard">📋</button>
+          </div>
+        </div>
+        <textarea
+          id="inputText"
+          placeholder="Type or paste text here to translate..."
+          maxlength="3000"
+        ></textarea>
+        <div class="panel-bottom">
+          <span id="charCount">0 / 3000</span>
+          <button class="icon-btn small" id="listenInputBtn" title="Speak input (browser TTS)">🔊</button>
+        </div>
+      </div>
+
+      <!-- translate button (middle on mobile) -->
+      <div class="translate-middle">
+        <button id="translateBtn" class="translate-btn">Translate</button>
+      </div>
+
+      <!-- output panel -->
+      <div class="panel output-panel">
+        <div class="panel-top">
+          <span class="panel-label" id="toLabel">Translation</span>
+          <div class="panel-actions">
+            <button class="icon-btn" id="copyBtn" title="Copy translation">📋</button>
+            <button class="icon-btn" id="listenOutputBtn" title="Speak translation (browser TTS)">🔊</button>
+          </div>
+        </div>
+
+        <!-- loading state -->
+        <div id="outputLoading" style="display:none" class="output-loading">
+          <div class="loader"></div>
+          <span>Translating...</span>
+        </div>
+
+        <!-- result -->
+        <div id="outputText" class="output-text">
+          <span class="output-placeholder">Translation will appear here</span>
+        </div>
+
+        <!-- detected language badge -->
+        <div class="panel-bottom">
+          <span id="detectedLang" class="detected-badge" style="display:none"></span>
+          <span id="translationNote" class="translation-note" style="display:none"></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- error box -->
+    <div id="errorMsg" class="error-msg" style="display:none"></div>
+
+    <!-- translate button (desktop - below panels) -->
+    <button id="translateBtnBottom" class="translate-btn-bottom">
+      ✨ Translate with Claude AI
+    </button>
+
+    <!-- api key -->
+    <div class="apikey-section">
+      <label for="apiKey">🔑 Anthropic API Key</label>
+      <input type="password" id="apiKey" placeholder="sk-ant-api03-..." autocomplete="off"/>
+      <small>Stays in your browser only. Never sent anywhere except Anthropic.</small>
+    </div>
+
+  </div>
+
+  <!-- history section -->
+  <div class="history-section" id="historySection" style="display:none">
+    <div class="history-inner">
+      <div class="history-top">
+        <h3>Recent Translations</h3>
+        <button id="clearHistoryBtn" class="clear-history-btn">Clear All</button>
+      </div>
+      <div id="historyList"></div>
+    </div>
+  </div>
+
+  <!-- quick examples -->
+  <div class="examples-section">
+    <div class="examples-inner">
+      <h3>Try these examples</h3>
+      <div class="examples-grid">
+        <div class="example-card" onclick="loadExample('Hello, how are you?', 'English', 'Hindi')">
+          <div class="ex-from">Hello, how are you?</div>
+          <div class="ex-arrow">→ Hindi</div>
+        </div>
+        <div class="example-card" onclick="loadExample('The meeting is scheduled for tomorrow at 10 AM.', 'English', 'Spanish')">
+          <div class="ex-from">The meeting is scheduled for tomorrow at 10 AM.</div>
+          <div class="ex-arrow">→ Spanish</div>
+        </div>
+        <div class="example-card" onclick="loadExample('मुझे हिंदी बोलना पसंद है।', 'Hindi', 'English')">
+          <div class="ex-from">मुझे हिंदी बोलना पसंद है।</div>
+          <div class="ex-arrow">→ English</div>
+        </div>
+        <div class="example-card" onclick="loadExample('Thank you for your help, I really appreciate it.', 'English', 'French')">
+          <div class="ex-from">Thank you for your help, I really appreciate it.</div>
+          <div class="ex-arrow">→ French</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- about / how it works -->
+  <div class="how-section" id="about">
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="step">
+        <span class="step-num">1</span>
+        <h3>Type Your Text</h3>
+        <p>Paste or type any text. Auto-detect figures out the language automatically.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">2</span>
+        <h3>Pick a Language</h3>
+        <p>Choose from 35+ languages to translate into.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">3</span>
+        <h3>Claude Translates</h3>
+        <p>Claude AI translates with cultural context, not just word-for-word.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Made by <strong>Sparsh Shukla</strong> · Pinnacle Labs Internship 2026</p>
+    <p><small>Powered by Anthropic Claude API</small></p>
+  </footer>
+
+  <script src="src/app.js"></script>
+</body>
+</html>
